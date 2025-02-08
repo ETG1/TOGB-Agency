@@ -32,8 +32,8 @@ export default function Contact() {
         subject: '',
         message: '',
       });
-    } catch (err) {
-      console.error('Error submitting form:', err);
+    } catch (error) {
+      console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

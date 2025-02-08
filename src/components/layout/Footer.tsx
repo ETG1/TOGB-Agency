@@ -1,7 +1,17 @@
 import Link from 'next/link';
+import React from 'react';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
+}
+
+interface NavigationItem {
+  name: string;
+  href: string;
+}
+
+interface SocialNavigationItem extends NavigationItem {
+  icon: (props: IconProps) => React.ReactElement;
 }
 
 const navigation = {
@@ -12,7 +22,7 @@ const navigation = {
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
-  ],
+  ] as NavigationItem[],
   services: [
     { name: 'Web Development', href: '/services#web-development' },
     { name: 'Web Design', href: '/services#web-design' },
@@ -20,7 +30,7 @@ const navigation = {
     { name: 'Business Cards', href: '/services#business-cards' },
     { name: 'Flyers & Brochures', href: '/services#flyers-brochures' },
     { name: 'Custom Printing', href: '/services#custom-printing' },
-  ],
+  ] as NavigationItem[],
   social: [
     {
       name: 'Facebook',
@@ -70,7 +80,7 @@ const navigation = {
         </svg>
       ),
     },
-  ],
+  ] as SocialNavigationItem[],
 };
 
 export default function Footer() {
