@@ -82,7 +82,7 @@ export default function Home() {
               Everything you need to succeed
             </p>
             <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              From web development to print materials, we've got you covered with comprehensive solutions for your business.
+              From web development to print materials, we&apos;ve got you covered with comprehensive solutions for your business.
             </p>
           </div>
 
