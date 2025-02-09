@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { AuroraBackground } from '@/components/ui/aurora-background';
-import { HomeIcon, BriefcaseIcon, FolderIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 const services = [
   {
@@ -34,14 +33,6 @@ const services = [
       </svg>
     ),
   },
-];
-
-const navigation = [
-  { name: 'Home', href: '/', icon: HomeIcon },
-  { name: 'Services', href: '/services', icon: BriefcaseIcon },
-  { name: 'Portfolio', href: '/portfolio', icon: FolderIcon },
-  { name: 'About', href: '/about', icon: UserIcon },
-  { name: 'Contact', href: '/contact', icon: EnvelopeIcon },
 ];
 
 export default function Home() {
