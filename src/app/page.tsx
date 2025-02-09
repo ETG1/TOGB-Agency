@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { AuroraBackground } from '@/components/ui/aurora-background';
+import { HomeIcon, BriefcaseIcon, FolderIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 const services = [
   {
@@ -34,83 +36,108 @@ const services = [
   },
 ];
 
+const navigation = [
+  { name: 'Home', href: '/', icon: HomeIcon },
+  { name: 'Services', href: '/services', icon: BriefcaseIcon },
+  { name: 'Portfolio', href: '/portfolio', icon: FolderIcon },
+  { name: 'About', href: '/about', icon: UserIcon },
+  { name: 'Contact', href: '/contact', icon: EnvelopeIcon },
+];
+
 export default function Home() {
   return (
-    <div className="relative">
+    <div>
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="sm:text-center lg:text-left"
+      <section className="relative min-h-screen">
+        <AuroraBackground>
+          <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center max-w-4xl mx-auto mt-1"
+            >
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
+                <span className="block text-gray-900 dark:text-white mb-4">Transform Your Brand</span>
+                <span className="block bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">
+                  Digital & Print Solutions
+                </span>
+              </h1>
+              <p className="mt-8 text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                We create stunning websites and high-quality print materials that help your brand stand out in today&apos;s competitive market.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  href="/contact" 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-lg px-8 py-4"
+                >
+                  Get Started
+                </Button>
+                <Button 
+                  href="/portfolio" 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 text-lg px-8 py-4"
+                >
+                  View Our Work
+                </Button>
+              </div>
+
+              {/* Scroll Indicator */}
+              <motion.div 
+                className="mt-16"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block">Transform Your Brand</span>
-                  <span className="block text-blue-600">Digital & Print Solutions</span>
-                </h1>
-                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  We create stunning websites and high-quality print materials that help your brand stand out in today&apos;s competitive market.
-                </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <div className="rounded-md shadow">
-                    <Button href="/contact" size="lg">
-                      Get Started
-                    </Button>
-                  </div>
-                  <div className="mt-3 sm:mt-0 sm:ml-3">
-                    <Button href="/portfolio" variant="outline" size="lg">
-                      View Our Work
-                    </Button>
-                  </div>
+                <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-500 rounded-full mx-auto flex justify-center">
+                  <div className="w-1 h-3 bg-gray-400 dark:bg-gray-500 rounded-full mt-2"></div>
                 </div>
               </motion.div>
-            </main>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        </AuroraBackground>
+      </section>
 
       {/* Services Section */}
-      <div className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Services</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+      <section className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase mb-3">Services</h2>
+            <p className="text-4xl font-extrabold text-gray-900 dark:text-white mb-6">
               Everything you need to succeed
             </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               From web development to print materials, we&apos;ve got you covered with comprehensive solutions for your business.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-10">
-            <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  <div className="group">
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white transform transition-all duration-300 group-hover:scale-110">
-                      {service.icon}
-                    </div>
-                    <div className="ml-16 space-y-2">
-                      <h3 className="text-lg leading-6 font-medium text-gray-900">{service.title}</h3>
-                      <p className="text-base text-gray-500">{service.description}</p>
-                    </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative bg-white dark:bg-zinc-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 text-white mb-6">
+                    {service.icon}
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{service.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

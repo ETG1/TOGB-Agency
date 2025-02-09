@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 const webServices = [
   {
@@ -47,28 +48,32 @@ const fadeInUp = {
 
 export default function Services() {
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Section */}
-      <div className="relative py-16 bg-gradient-to-b from-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={fadeInUp}
-            className="text-center"
-          >
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-              Our Services
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Comprehensive digital and print solutions to help your business thrive in both online and offline spaces.
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <section className="relative [&>main>div]:!h-auto">
+        <AuroraBackground>
+          <div className="py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial="initial"
+                animate="animate"
+                variants={fadeInUp}
+                className="text-center"
+              >
+                <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+                  Our Services
+                </h1>
+                <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                  Comprehensive digital and print solutions to help your business thrive in both online and offline spaces.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </AuroraBackground>
+      </section>
 
       {/* Web Development Services */}
-      <div className="py-16">
+      <section className="py-16 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="initial"
@@ -77,7 +82,7 @@ export default function Services() {
             className="lg:text-center"
           >
             <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Web Development</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Digital Solutions for Modern Businesses
             </p>
           </motion.div>
@@ -90,13 +95,13 @@ export default function Services() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className="relative p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                  <p className="mt-2 text-gray-500">{service.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{service.title}</h3>
+                  <p className="mt-2 text-gray-500 dark:text-gray-300">{service.description}</p>
                   <ul className="mt-4 space-y-2">
                     {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center text-gray-600">
+                      <li key={feature} className="flex items-center text-gray-600 dark:text-gray-300">
                         <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -109,10 +114,10 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Print Services */}
-      <div className="py-16 bg-gray-50">
+      <section className="py-16 bg-white dark:bg-zinc-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="initial"
@@ -121,7 +126,7 @@ export default function Services() {
             className="lg:text-center"
           >
             <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Print Services</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Professional Print Solutions
             </p>
           </motion.div>
@@ -134,13 +139,13 @@ export default function Services() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className="relative p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                  <p className="mt-2 text-gray-500">{service.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{service.title}</h3>
+                  <p className="mt-2 text-gray-500 dark:text-gray-300">{service.description}</p>
                   <ul className="mt-4 space-y-2">
                     {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center text-gray-600">
+                      <li key={feature} className="flex items-center text-gray-600 dark:text-gray-300">
                         <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -153,10 +158,10 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA Section */}
-      <div className="bg-blue-600">
+      <section className="relative bg-gradient-to-r from-blue-600 to-violet-600">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
           <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             <span className="block">Ready to get started?</span>
@@ -170,7 +175,7 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 } 

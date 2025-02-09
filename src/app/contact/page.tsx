@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -49,37 +50,40 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-white">
-      <div className="relative py-16 bg-gradient-to-b from-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-              Get in Touch
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Have a project in mind? We would love to hear from you. Send us a message and we will respond as soon as possible.
-            </p>
-          </motion.div>
-        </div>
-      </div>
+    <div>
+      {/* Hero Section */}
+      <section className="relative [&>main>div]:!h-auto">
+        <AuroraBackground>
+          <div className="py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-center"
+              >
+                <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+                  Get in Touch
+                </h1>
+                <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                  Have a project in mind? We would love to hear from you. Send us a message and we will respond as soon as possible.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </AuroraBackground>
+      </section>
 
-      <div className="relative bg-white">
-        <div className="absolute inset-0">
-          <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50" />
-        </div>
+      {/* Contact Section */}
+      <section className="py-16 bg-zinc-50 dark:bg-zinc-900">
         <div className="relative max-w-7xl mx-auto lg:grid lg:grid-cols-5">
-          <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+          <div className="bg-zinc-100 dark:bg-zinc-800 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12 rounded-lg">
             <div className="max-w-lg mx-auto">
-              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Contact Information</h2>
-              <p className="mt-3 text-lg leading-6 text-gray-500">
+              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">Contact Information</h2>
+              <p className="mt-3 text-lg leading-6 text-gray-500 dark:text-gray-300">
                 We are here to help and answer any question you might have.
               </p>
-              <dl className="mt-8 text-base text-gray-500">
+              <dl className="mt-8 text-base text-gray-500 dark:text-gray-300">
                 <div className="mt-6">
                   <dt className="sr-only">Phone number</dt>
                   <dd className="flex">
@@ -111,7 +115,7 @@ export default function Contact() {
               </dl>
             </div>
           </div>
-          <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+          <div className="bg-white dark:bg-zinc-800/50 py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12 rounded-lg ml-4">
             <div className="max-w-lg mx-auto lg:max-w-none">
               <motion.form
                 initial={{ opacity: 0, x: 20 }}
@@ -121,7 +125,7 @@ export default function Contact() {
                 className="grid grid-cols-1 gap-y-6"
               >
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Full name
                   </label>
                   <div className="mt-1">
@@ -132,12 +136,12 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                      className="block w-full shadow-sm py-3 px-4 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Email
                   </label>
                   <div className="mt-1">
@@ -148,12 +152,12 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                      className="block w-full shadow-sm py-3 px-4 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Phone
                   </label>
                   <div className="mt-1">
@@ -163,12 +167,12 @@ export default function Contact() {
                       id="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                      className="block w-full shadow-sm py-3 px-4 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Subject
                   </label>
                   <div className="mt-1">
@@ -179,12 +183,12 @@ export default function Contact() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                      className="block w-full shadow-sm py-3 px-4 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Message
                   </label>
                   <div className="mt-1">
@@ -195,7 +199,7 @@ export default function Contact() {
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                      className="block w-full shadow-sm py-3 px-4 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-md"
                     />
                   </div>
                 </div>
@@ -203,7 +207,7 @@ export default function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex justify-center py-3 px-6"
+                    className="w-full flex justify-center py-3 px-6 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
@@ -212,7 +216,7 @@ export default function Contact() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-green-600"
+                    className="text-green-500 dark:text-green-400"
                   >
                     Thank you for your message! We will get back to you soon.
                   </motion.div>
@@ -221,7 +225,7 @@ export default function Contact() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-red-600"
+                    className="text-red-500 dark:text-red-400"
                   >
                     There was an error sending your message. Please try again.
                   </motion.div>
@@ -230,7 +234,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 } 

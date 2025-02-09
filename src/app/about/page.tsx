@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 const team = [
   {
@@ -62,28 +63,32 @@ const values = [
 
 export default function About() {
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Section */}
-      <div className="relative py-16 bg-gradient-to-b from-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-              About WebPrint Agency
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              We are a team of passionate creators dedicated to delivering exceptional digital and print solutions.
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <section className="relative [&>main>div]:!h-auto">
+        <AuroraBackground>
+          <div className="py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-center"
+              >
+                <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+                  About WebPrint Agency
+                </h1>
+                <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                  We are a team of passionate creators dedicated to delivering exceptional digital and print solutions.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </AuroraBackground>
+      </section>
 
       {/* Story Section */}
-      <div className="py-16">
+      <section className="py-16 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -91,11 +96,11 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="lg:text-center"
           >
-            <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Story</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-base text-blue-600 dark:text-blue-400 font-semibold tracking-wide uppercase">Our Story</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               A Decade of Excellence
             </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto">
               Founded in 2013, WebPrint Agency has grown from a small startup to a full-service digital and print agency.
               We have helped hundreds of businesses establish their presence both online and offline.
             </p>
@@ -110,15 +115,15 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
+                  className="relative bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <div>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-blue-600 to-violet-600 text-white">
                       {value.icon}
                     </div>
-                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{value.title}</p>
+                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900 dark:text-white">{value.title}</p>
                   </div>
-                  <div className="mt-2 ml-16 text-base text-gray-500">
+                  <div className="mt-2 ml-16 text-base text-gray-500 dark:text-gray-300">
                     {value.description}
                   </div>
                 </motion.div>
@@ -126,14 +131,14 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Team Section */}
-      <div className="bg-gray-50 py-16">
+      <section className="bg-white dark:bg-zinc-800/50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:text-center">
-            <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Team</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-base text-blue-600 dark:text-blue-400 font-semibold tracking-wide uppercase">Our Team</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Meet the Experts
             </p>
           </div>
@@ -146,13 +151,12 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="lg:col-span-1"
+                  className="lg:col-span-1 bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
                     <div className="h-0 aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
-                      <div className="relative h-48 bg-gray-200 rounded-lg overflow-hidden">
-                        {/* Replace with actual images */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-75" />
+                      <div className="relative h-48 bg-gradient-to-br from-blue-600 to-violet-600 rounded-lg overflow-hidden">
+                        <div className="absolute inset-0 opacity-75" />
                         <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-bold">
                           {member.name}
                         </div>
@@ -161,11 +165,11 @@ export default function About() {
                     <div className="sm:col-span-2">
                       <div className="space-y-4">
                         <div className="text-lg leading-6 font-medium space-y-1">
-                          <h3 className="text-gray-900">{member.name}</h3>
-                          <p className="text-blue-600">{member.role}</p>
+                          <h3 className="text-gray-900 dark:text-white">{member.name}</h3>
+                          <p className="text-blue-600 dark:text-blue-400">{member.role}</p>
                         </div>
                         <div className="text-lg">
-                          <p className="text-gray-500">{member.bio}</p>
+                          <p className="text-gray-500 dark:text-gray-300">{member.bio}</p>
                         </div>
                       </div>
                     </div>
@@ -175,10 +179,10 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA Section */}
-      <div className="bg-blue-600">
+      <section className="bg-gradient-to-r from-blue-600 to-violet-600">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
           <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             <span className="block">Ready to bring your ideas to life?</span>
@@ -192,7 +196,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 } 

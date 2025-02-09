@@ -85,12 +85,12 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200">
+    <footer className="bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
-            <span className="text-2xl font-bold text-gray-900">TOGB WebInk Studio</span>
-            <p className="text-gray-500 text-base">
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">TOGB WebInk Studio</span>
+            <p className="text-gray-500 dark:text-gray-400 text-base">
               Creating digital experiences and print materials that make your brand stand out.
             </p>
             <div className="flex space-x-6">
@@ -98,7 +98,7 @@ export default function Footer() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -109,7 +109,7 @@ export default function Footer() {
           <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div className="">
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
                   Navigation
                 </h3>
                 <ul className="mt-4 space-y-4">
@@ -117,7 +117,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-base text-gray-500 hover:text-gray-900"
+                        className="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {item.name}
                       </Link>
@@ -126,7 +126,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
                   Services
                 </h3>
                 <ul className="mt-4 space-y-4">
@@ -134,7 +134,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-base text-gray-500 hover:text-gray-900"
+                        className="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {item.name}
                       </Link>
@@ -145,8 +145,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">
+        <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
+          <p className="text-base text-gray-400 dark:text-gray-500 xl:text-center">
             &copy; {new Date().getFullYear()} WebPrint Agency. All rights reserved.
           </p>
         </div>
