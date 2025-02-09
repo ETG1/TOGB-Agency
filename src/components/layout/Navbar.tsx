@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HomeIcon, BriefcaseIcon, FolderIcon, UserIcon, EnvelopeIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, BriefcaseIcon, FolderIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { cn } from '@/lib/utils';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -14,95 +15,141 @@ const navigation = [
 ];
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('Home');
+  const [isMobile, setIsMobile] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleResize();
+    handleScroll();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center">
+    <nav className="fixed inset-x-0 z-50">
+      {/* Logo - Centered on mobile, left-aligned on desktop */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <div className="flex items-center md:justify-between justify-center">
+          <Link 
+            href="/" 
+            className={cn(
+              "flex-shrink-0 flex items-center transition-all duration-300",
+              isMobile && isScrolled && "px-6 py-2 rounded-full bg-white/10 dark:bg-zinc-800/50 backdrop-blur-md"
+            )}
+          >
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">TOGB WebInk</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="group relative text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-              >
-                <div className="flex items-center space-x-2">
-                  <item.icon className="h-5 w-5 transform group-hover:scale-110 transition-transform" />
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">{item.name}</span>
-                </div>
-              </Link>
-            ))}
+          <div className="hidden md:block">
+            <div className="flex items-center gap-3 bg-white/80 dark:bg-zinc-900/80 border border-gray-200 dark:border-gray-800 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+              {navigation.map((item) => {
+                const isActive = activeTab === item.name;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setActiveTab(item.name)}
+                    className={cn(
+                      "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                      "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white",
+                      isActive && "bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white"
+                    )}
+                  >
+                    <span className="flex items-center space-x-2">
+                      <item.icon className="h-5 w-5" />
+                      <span>{item.name}</span>
+                    </span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="navLamp"
+                        className="absolute inset-0 w-full bg-gray-100 dark:bg-zinc-800 rounded-full -z-10"
+                        initial={false}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }}
+                      >
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-blue-600 dark:bg-violet-600 rounded-t-full">
+                          <div className="absolute w-12 h-6 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-2 -left-2" />
+                          <div className="absolute w-8 h-6 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-1" />
+                          <div className="absolute w-4 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-sm top-0 left-2" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Get Started Button - Hidden on mobile */}
+          <div className="hidden md:block">
             <Link
               href="/contact"
-              className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
+              className="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:from-blue-700 hover:to-violet-700 transition-colors"
             >
               Get Started
             </Link>
           </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              type="button"
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <span className="sr-only">Open main menu</span>
-              {mobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
-            </button>
-          </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden"
-          >
-            <div className="fixed inset-0 z-50">
-              <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" aria-hidden="true" />
-              <div className="fixed inset-x-4 top-8 z-50 mx-auto max-w-xl rounded-lg bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-lg ring-1 ring-black/5 dark:ring-white/5 p-6">
-                <div className="space-y-4">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center justify-center space-x-3 rounded-lg px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100/50 dark:hover:bg-zinc-800/50 transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <item.icon className="h-6 w-6" />
-                      <span>{item.name}</span>
-                    </Link>
-                  ))}
-                  <Link
-                    href="/contact"
-                    className="flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white px-4 py-3 rounded-lg text-base font-medium hover:from-blue-700 hover:to-violet-700 transition-all"
-                    onClick={() => setMobileMenuOpen(false)}
+      {/* Mobile Navigation - Bottom Fixed */}
+      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2">
+        <div className="flex items-center gap-2 bg-white/10 dark:bg-zinc-800/50 backdrop-blur-md py-2 px-2 rounded-full">
+          {navigation.map((item) => {
+            const isActive = activeTab === item.name;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setActiveTab(item.name)}
+                className={cn(
+                  "relative p-2 rounded-full transition-colors",
+                  "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white",
+                  isActive && "bg-white/10 dark:bg-zinc-700/50 text-gray-900 dark:text-white"
+                )}
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" />
+                {isActive && (
+                  <motion.div
+                    layoutId="mobileLamp"
+                    className="absolute inset-0 w-full bg-white/10 dark:bg-zinc-700/50 rounded-full -z-10"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
                   >
-                    <EnvelopeIcon className="h-5 w-5" />
-                    <span>Get Started</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-blue-600 dark:bg-violet-600 rounded-t-full">
+                      <div className="absolute w-8 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-2 -left-1" />
+                      <div className="absolute w-6 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-1" />
+                      <div className="absolute w-4 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-sm top-0 left-1" />
+                    </div>
+                  </motion.div>
+                )}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </nav>
   );
 } 
