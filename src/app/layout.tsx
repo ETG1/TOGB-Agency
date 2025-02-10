@@ -5,19 +5,30 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
+import { generateMetadata } from "@/components/Seo";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "TOGB WebInk Studio - Web Development & Printing Services",
-  description: "Professional web development and printing services for your business. We create stunning websites and high-quality print materials to help your brand stand out.",
-  keywords: "web development, printing services, digital agency, web design, business cards, flyers, brochures, SEO",
-};
+export const metadata: Metadata = generateMetadata({
+  title: "TOGB | Freelance Web Design & Printing SaaS",
+  description:
+    "Professional web design and printing services for businesses. Custom websites, logos, and print materials to boost your brand presence.",
+  keywords: [
+    "web design",
+    "printing",
+    "SaaS",
+    "freelance",
+    "logo design",
+    "branding",
+  ],
+  ogImage: "/home-og-image.jpg", 
+  ogType: "website",
+});
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -25,9 +36,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="relative flex flex-col min-h-screen bg-white dark:bg-zinc-900">
             <Navbar />
-            <main className="flex-grow pt-16">
-              {children}
-            </main>
+            <main className="flex-grow pt-16">{children}</main>
             <Footer />
             <ThemeSwitch />
           </div>

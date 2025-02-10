@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { HomeIcon, BriefcaseIcon, FolderIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -50,7 +51,8 @@ export default function Navbar() {
               isMobile && isScrolled && "px-6 py-2 rounded-full bg-white/10 dark:bg-zinc-800/50 backdrop-blur-md"
             )}
           >
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">TOGB WebInk</span>
+            <Image src={"/logo.png"} alt='logo' width={30} height={30} className="mr-2 drop-shadow-[0_0_12px_rgba(59,130,246,0.8)]"/>
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">TOGB</span>
           </Link>
 
           {/* Desktop Navigation */}
