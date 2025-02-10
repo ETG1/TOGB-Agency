@@ -10,7 +10,7 @@ import { generateMetadata } from "@/components/Seo";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = generateMetadata({
-  title: "Freelance Web Design & Printing SaaS | Your Company Name",
+  title: "TOGB | Freelance Web Design & Printing SaaS",
   description:
     "Professional web design and printing services for businesses. Custom websites, logos, and print materials to boost your brand presence.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = generateMetadata({
     "logo design",
     "branding",
   ],
-  ogImage: "/home-og-image.jpg", // Replace with your actual image path
+  ogImage: "/home-og-image.jpg", 
   ogType: "website",
 });
 
