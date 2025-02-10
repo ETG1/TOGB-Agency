@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} h-full bg-white dark:bg-zinc-900`}>
         <ThemeProvider>
-          <div className="flex flex-col min-h-screen bg-white dark:bg-zinc-900">
+          <div className="relative flex flex-col min-h-screen bg-white dark:bg-zinc-900">
             <Navbar />
             <main className="flex-grow pt-16">
               {children}

@@ -1,8 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { AuroraBackground } from '@/components/ui/aurora-background';
+import { Dialog } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
+import { useState } from 'react';
 
 const team = [
   {
@@ -10,24 +14,52 @@ const team = [
     role: 'Founder & CEO',
     image: '/images/team/john.jpg',
     bio: 'With over 15 years of experience in web development and print design, John leads our team with a passion for creating exceptional digital experiences.',
+    extendedBio: 'A visionary leader with a deep understanding of both digital and print mediums, Reeper has successfully guided numerous businesses through their digital transformation journeys. His expertise spans across modern web technologies, user experience design, and print production techniques.',
+    skills: ['Web Development', 'Business Strategy', 'UX Design', 'Print Production'],
+    social: {
+      linkedin: 'https://linkedin.com/in/reeper',
+      twitter: 'https://twitter.com/reeper',
+      github: 'https://github.com/reeper'
+    }
   },
   {
     name: 'Prince',
     role: 'Creative Director',
     image: '/images/team/prince.jpg',
     bio: 'Prince brings his artistic vision and strategic thinking to every project, ensuring our clients receive innovative and effective design solutions.',
+    extendedBio: 'As our Creative Director, Prince combines artistic excellence with strategic insight to deliver compelling visual solutions. His work has been recognized in multiple design awards and has helped establish our agency as a leader in creative innovation.',
+    skills: ['Visual Design', 'Brand Strategy', 'Art Direction', 'Motion Design'],
+    social: {
+      linkedin: 'https://linkedin.com/in/prince',
+      twitter: 'https://twitter.com/prince',
+      github: 'https://github.com/prince'
+    }
   },
   {
     name: 'Eli',
     role: 'Lead Developer',
     image: '/images/team/eli.jpg',
     bio: 'Eli specializes in building scalable web applications and implementing cutting-edge technologies to deliver outstanding results.',
+    extendedBio: 'A master of modern web technologies, Eli leads our development team in creating robust, scalable solutions. His expertise in Next.js, Node.js, and React architecture has been instrumental in delivering high-performance applications for our clients.',
+    skills: ['Full Stack Development', 'Cloud Architecture', 'Performance Optimization', 'Technical Leadership'],
+    social: {
+      linkedin: 'https://linkedin.com/in/eli',
+      twitter: 'https://twitter.com/eli',
+      github: 'https://github.com/eli'
+    }
   },
   {
     name: 'Piano',
     role: 'Print Production Manager',
     image: '/images/team/piano.jpg',
     bio: 'Piano oversees all print projects, ensuring the highest quality standards and timely delivery of materials to our clients.',
+    extendedBio: 'With a keen eye for detail and extensive knowledge of print production processes, Piano ensures that every print project meets our exacting standards. Her expertise in color management and print techniques has been crucial in delivering premium print materials.',
+    skills: ['Print Production', 'Color Management', 'Quality Control', 'Project Management'],
+    social: {
+      linkedin: 'https://linkedin.com/in/piano',
+      twitter: 'https://twitter.com/piano',
+      github: 'https://github.com/piano'
+    }
   },
 ];
 
@@ -61,7 +93,119 @@ const values = [
   },
 ];
 
+interface TeamMemberModalProps {
+  member: typeof team[0];
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function TeamMemberModal({ member, isOpen, onClose }: TeamMemberModalProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-50 overflow-y-auto"
+          onClose={onClose}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+              aria-hidden="true"
+            />
+
+            <span className="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+
+            <Dialog.Panel
+              as={motion.div}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="inline-block w-full max-w-2xl p-6 my-8 overflow-hidden text-left align-middle bg-white dark:bg-zinc-800 rounded-2xl shadow-xl transform transition-all"
+            >
+              <div className="absolute right-4 top-4">
+                <button
+                  onClick={onClose}
+                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+
+              <div className="mt-2">
+                <div className="flex items-center space-x-4">
+                  <div className="relative h-20 w-20 rounded-full overflow-hidden bg-gradient-to-br from-blue-600 to-violet-600">
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold">
+                      {member.name[0]}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">
+                      {member.name}
+                    </h3>
+                    <p className="text-lg text-gray-600 dark:text-gray-300">{member.role}</p>
+                  </div>
+                </div>
+
+                <div className="mt-6">
+                  <p className="text-gray-600 dark:text-gray-300">{member.extendedBio}</p>
+                </div>
+
+                <div className="mt-6">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Skills & Expertise</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {member.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 rounded-full text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 flex space-x-4">
+                  <a
+                    href={member.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-500 transition-colors"
+                  >
+                    <FaLinkedin className="h-6 w-6" />
+                  </a>
+                  <a
+                    href={member.social.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                  >
+                    <FaTwitter className="h-6 w-6" />
+                  </a>
+                  <a
+                    href={member.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  >
+                    <FaGithub className="h-6 w-6" />
+                  </a>
+                </div>
+              </div>
+            </Dialog.Panel>
+          </div>
+        </Dialog>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function About() {
+  const [selectedMember, setSelectedMember] = useState<typeof team[0] | null>(null);
+
   return (
     <div>
       {/* Hero Section */}
@@ -144,33 +288,65 @@ export default function About() {
           </div>
 
           <div className="mt-16">
-            <div className="space-y-12 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {team.map((member, index) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="lg:col-span-1 bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className="group relative"
                 >
-                  <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
-                    <div className="h-0 aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
-                      <div className="relative h-48 bg-gradient-to-br from-blue-600 to-violet-600 rounded-lg overflow-hidden">
-                        <div className="absolute inset-0 opacity-75" />
-                        <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-bold">
-                          {member.name}
-                        </div>
+                  <div
+                    onClick={() => setSelectedMember(member)}
+                    className="relative overflow-hidden rounded-2xl bg-white dark:bg-zinc-800 p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
+                             border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500"
+                  >
+                    <div className="relative h-48 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-blue-600 to-violet-600 group-hover:scale-105 transition-transform duration-300">
+                      <div className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold">
+                        {member.name[0]}
                       </div>
                     </div>
-                    <div className="sm:col-span-2">
-                      <div className="space-y-4">
-                        <div className="text-lg leading-6 font-medium space-y-1">
-                          <h3 className="text-gray-900 dark:text-white">{member.name}</h3>
-                          <p className="text-blue-600 dark:text-blue-400">{member.role}</p>
-                        </div>
-                        <div className="text-lg">
-                          <p className="text-gray-500 dark:text-gray-300">{member.bio}</p>
-                        </div>
+
+                    <div className="relative z-10 min-h-[160px] flex flex-col">
+                      <div>
+                        <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text mb-1">
+                          {member.name}
+                        </h3>
+                        <p className="text-sm text-blue-600 dark:text-blue-400 mb-4">{member.role}</p>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
+                          {member.bio}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 flex space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a
+                          href={member.social.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-blue-500 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaLinkedin className="h-5 w-5" />
+                        </a>
+                        <a
+                          href={member.social.twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-blue-400 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaTwitter className="h-5 w-5" />
+                        </a>
+                        <a
+                          href={member.social.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaGithub className="h-5 w-5" />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -179,6 +355,12 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        <TeamMemberModal
+          member={selectedMember!}
+          isOpen={!!selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
       </section>
 
       {/* CTA Section */}

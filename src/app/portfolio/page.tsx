@@ -103,12 +103,12 @@ export default function Portfolio() {
       <section className="py-16 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filter */}
-          <div className="mb-16 flex justify-center space-x-4">
+          <div className="mb-16 flex justify-center space-x-4 rounded-md">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeCategory === category.id
                     ? 'bg-gradient-to-r from-blue-600 to-violet-600 text-white'
                     : 'bg-white dark:bg-zinc-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700'

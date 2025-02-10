@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative min-h-screen">
+      <section data-hero-section className="relative min-h-screen">
         <AuroraBackground>
           <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -61,7 +61,7 @@ export default function Home() {
                 <Button 
                   href="/contact" 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-lg px-8 py-4"
+                  className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-lg px-8 py-4 rounded-full"
                 >
                   Get Started
                 </Button>
@@ -69,7 +69,7 @@ export default function Home() {
                   href="/portfolio" 
                   variant="outline" 
                   size="lg" 
-                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 text-lg px-8 py-4"
+                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 text-lg px-8 py-4 rounded-full"
                 >
                   View Our Work
                 </Button>
