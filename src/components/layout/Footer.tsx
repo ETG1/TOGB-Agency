@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -16,25 +16,25 @@ interface SocialNavigationItem extends NavigationItem {
 
 const navigation = {
   main: [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "About", href: "/about" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
   ] as NavigationItem[],
   services: [
-    { name: 'Web Development', href: '/services#web-development' },
-    { name: 'Web Design', href: '/services#web-design' },
-    { name: 'E-commerce', href: '/services#e-commerce' },
-    { name: 'Business Cards', href: '/services#business-cards' },
-    { name: 'Flyers & Brochures', href: '/services#flyers-brochures' },
-    { name: 'Custom Printing', href: '/services#custom-printing' },
+    { name: "Web Development", href: "/services#web-development" },
+    { name: "Web Design", href: "/services#web-design" },
+    { name: "E-commerce", href: "/services#e-commerce" },
+    { name: "Business Cards", href: "/services#business-cards" },
+    { name: "Flyers & Brochures", href: "/services#flyers-brochures" },
+    { name: "Custom Printing", href: "/services#custom-printing" },
   ] as NavigationItem[],
   social: [
     {
-      name: 'Facebook',
-      href: '#',
+      name: "Facebook",
+      href: "#",
       icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -46,8 +46,8 @@ const navigation = {
       ),
     },
     {
-      name: 'Instagram',
-      href: '#',
+      name: "Instagram",
+      href: "#",
       icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -59,8 +59,8 @@ const navigation = {
       ),
     },
     {
-      name: 'Twitter',
-      href: '#',
+      name: "Twitter",
+      href: "#",
       icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
@@ -68,8 +68,8 @@ const navigation = {
       ),
     },
     {
-      name: 'LinkedIn',
-      href: '#',
+      name: "LinkedIn",
+      href: "#",
       icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -87,13 +87,31 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8 xl:col-span-1">
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">TOGB WebInk Studio</span>
-            <p className="text-gray-500 dark:text-gray-400 text-base">
-              Creating digital experiences and print materials that make your brand stand out.
-            </p>
-            <div className="flex space-x-6">
+        <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-12 xl:gap-16">
+          {/* Left Section: Branding & Newsletter */}
+          <div className="space-y-4">
+            {/* Newsletter Section */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
+                Subscribe to our Newsletter
+              </h3>
+              <form className="mt-2 flex">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="px-4 py-2 w-64 rounded-l-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 transition"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex space-x-6 pt-2">
               {navigation.social.map((item) => (
                 <a
                   key={item.name}
@@ -106,51 +124,52 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div className="">
-                <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
-                  Navigation
-                </h3>
-                <ul className="mt-4 space-y-4">
-                  {navigation.main.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
-                  Services
-                </h3>
-                <ul className="mt-4 space-y-4">
-                  {navigation.services.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+          {/* Right Section: Navigation Links */}
+          <div className="grid grid-cols-2 gap-8 xl:gap-16">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
+                Navigation
+              </h3>
+              <ul className="mt-4 space-y-4">
+                {navigation.main.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-400 dark:text-gray-300 tracking-wider uppercase">
+                Services
+              </h3>
+              <ul className="mt-4 space-y-4">
+                {navigation.services.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
+
         <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
           <p className="text-base text-gray-400 dark:text-gray-500 xl:text-center">
-            &copy; {new Date().getFullYear()} WebPrint Agency. All rights reserved.
+            &copy; {new Date().getFullYear()} TOGB. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
   );
-} 
+}
