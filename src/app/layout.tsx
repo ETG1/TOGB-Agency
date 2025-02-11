@@ -36,7 +36,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="relative flex flex-col min-h-screen bg-white dark:bg-zinc-900">
             <Navbar />
-            <main className="flex-grow pt-16">{children}</main>
+            <main className="flex-grow">{children}</main>
             <Footer />
             <ThemeSwitch />
           </div>
