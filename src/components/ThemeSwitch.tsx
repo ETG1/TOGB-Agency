@@ -17,7 +17,7 @@ export function ThemeSwitch() {
       <button
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         className={`
-          relative inline-flex h-12 w-12 items-center justify-center rounded-full
+          relative inline-flex h-8 w-8 items-center justify-center rounded-full
           border-2 border-zinc-700/50 bg-zinc-800/50 backdrop-blur-md
           hover:bg-zinc-700/50 transition-colors
           dark:border-zinc-700/50 dark:bg-zinc-800/50

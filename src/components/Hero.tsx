@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AuroraBackground } from "./ui/aurora-background";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { Button } from "./ui/Button";
 
 const Hero = () => {
@@ -11,7 +11,7 @@ const Hero = () => {
       {/* Hero Section */}
       <section data-hero-section className="relative min-h-screen">
         <AuroraBackground>
-          <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
+          <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -19,33 +19,34 @@ const Hero = () => {
               className="text-center max-w-4xl mx-auto mt-1"
             >
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
-                <span className="block text-gray-900 dark:text-white mb-4 pt-16">
-                  Transform Your Brand
+                <span className="block text-gray-900 dark:text-white mb-4">
+                  Next.js Web Experts
                 </span>
                 <span className="block bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">
-                  Digital & Print Solutions
+                  Print & Social Media Solutions
                 </span>
               </h1>
-              <p className="mt-8 text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                We create stunning websites and high-quality print materials
-                that help your brand stand out in today&apos;s competitive
-                market.
+              <p className="mt-8 text-sm sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                We craft stunning, high-performance websites and premium print
+                materials designed to elevate your brand. From sleek digital
+                experiences to eye-catching print solutions, we help you make a
+                lasting impact in today&apos;s competitive market.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  href="/contact"
+                  href="#pricing"
                   size="lg"
                   className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-lg px-8 py-4 rounded-full"
                 >
-                  Get Started
+                  Pricing
                 </Button>
                 <Button
-                  href="/portfolio"
+                  href="#work"
                   variant="outline"
                   size="lg"
                   className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 text-lg px-8 py-4 rounded-full"
                 >
-                  View Our Work
+                  Our Work
                 </Button>
               </div>
 

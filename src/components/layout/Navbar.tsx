@@ -10,8 +10,11 @@ import {
   UserIcon,
   EnvelopeIcon,
 } from "@heroicons/react/24/outline";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Button } from "../ui/Button";
+import { QuoteForm } from "../QuoteForm";
 
 const navigation = [
   { name: "Home", href: "/", icon: HomeIcon },
@@ -116,14 +119,18 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Get Started Button - Hidden on mobile */}
+          {/* Get Quote Button - Now opens a dialog */}
           <div className="hidden md:block">
-            <Link
-              href="/quote"
-              className="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:from-blue-700 hover:to-violet-700 transition-colors"
-            >
-              Get Quote
-            </Link>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="bg-gradient-to-r from-blue-600 to-violet-600 text-white hover:from-blue-700 hover:to-violet-700 transition-colors rounded-full">
+                  Quotation
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px] dark:bg-zinc-900 dark:border-zinc-700">
+                <QuoteForm />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

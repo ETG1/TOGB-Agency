@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { generateMetadata } from "@/components/Seo";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = generateMetadata({
     "logo design",
     "branding",
   ],
-  ogImage: "/home-og-image.jpg", 
+  ogImage: "/home-og-image.jpg",
   ogType: "website",
 });
 
@@ -36,7 +37,10 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="relative flex flex-col min-h-screen bg-white dark:bg-zinc-900">
             <Navbar />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow">
+              {children}
+              <Toaster />
+            </main>
             <Footer />
             <ThemeSwitch />
           </div>
