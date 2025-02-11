@@ -73,7 +73,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="flex items-center gap-3 border border-gray-200 dark:border-gray-800 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+            <div className="flex items-center gap-3 border border-gray-200 dark:border-gray-800 dark:bg-slate-950/80 bg-white backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
               {navigation.map((item) => {
                 const isActive = activeTab === item.name;
                 return (
