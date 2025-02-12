@@ -137,7 +137,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation - Bottom Fixed */}
       <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2">
-        <div className="flex items-center gap-2 backdrop-blur-md py-2 px-2 rounded-full">
+        <div className="flex items-center gap-4 backdrop-blur-md py-2 px-4 rounded-full bg-white/10 dark:bg-zinc-800/50 shadow-lg">
           {navigation.map((item) => {
             const isActive = activeTab === item.name;
             return (
@@ -145,32 +145,44 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setActiveTab(item.name)}
-                className={cn(
-                  "relative p-2 rounded-full transition-colors",
-                  "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white",
-                  isActive &&
-                    "bg-white/10 dark:bg-zinc-700/50 text-gray-900 dark:text-white"
-                )}
+                className="relative flex flex-col items-center"
               >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" />
+                <div
+                  className={cn(
+                    "p-2 rounded-full transition-all duration-300 relative",
+                    "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white",
+                    isActive && "bg-white/10 dark:bg-zinc-700/50 text-gray-900 dark:text-white"
+                  )}
+                >
+                  <item.icon className="h-6 w-6" />
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobileLamp"
+                      className="absolute inset-0 w-full h-full bg-white/10 dark:bg-zinc-700/50 rounded-full -z-10"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    >
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-blue-600 dark:bg-violet-600 rounded-t-full">
+                        <div className="absolute w-8 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-2 -left-1" />
+                        <div className="absolute w-6 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-1" />
+                        <div className="absolute w-4 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-sm top-0 left-1" />
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
                 {isActive && (
-                  <motion.div
-                    layoutId="mobileLamp"
-                    className="absolute inset-0 w-full bg-white/10 dark:bg-zinc-700/50 rounded-full -z-10"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
+                  <motion.span
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    className="text-xs font-medium mt-1.5 text-gray-900 dark:text-white"
                   >
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-blue-600 dark:bg-violet-600 rounded-t-full">
-                      <div className="absolute w-8 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-2 -left-1" />
-                      <div className="absolute w-6 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-md -top-1" />
-                      <div className="absolute w-4 h-4 bg-blue-600/20 dark:bg-violet-600/20 rounded-full blur-sm top-0 left-1" />
-                    </div>
-                  </motion.div>
+                    {item.name}
+                  </motion.span>
                 )}
               </Link>
             );
