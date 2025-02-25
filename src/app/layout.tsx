@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { generateMetadata } from "@/components/Seo";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner"
 
 const inter = Inter({ subsets: ["latin"] });
 
